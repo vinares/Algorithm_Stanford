@@ -1,3 +1,4 @@
+import numpy as np
 def merge_and_count(nums):
     n = len(nums)
     if n < 2:
@@ -19,5 +20,6 @@ def merge_and_count(nums):
     c += b[j::]
     return c, count
 
-nums = [1,3,5,2,4,6]
+nums = np.loadtxt('numbers.txt')
+nums = list(nums)
 print(merge_and_count(nums)[1])
