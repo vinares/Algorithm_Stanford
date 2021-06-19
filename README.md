@@ -1,3 +1,4 @@
+
 # Algorithm_Stanford
 
 + Algorithm specialization
@@ -14,16 +15,16 @@
 
 	+ **'primitive operations'** : add or multiply 2 single-digit numbers
 	+ **3rd-grade multiplication**
-		*  #operations <= constant * n^2 
+		*  $\#operations \leq constant * n^2$ 
 	+ **karatsuba multiplication**
-		*  #operations <= constant * nlog(n) 
+		*  $\#operations \leq constant * n^2$
 	+ **base case**: a condition when algorithm cannot recurse
 	
 + Merge Sort
 
 	+ runing time
-		* #operations per recursion <= 4m + 2 <= 6m
-		* #operations <= 6nlogn + 6n
+		* $\#operations per recursion \leq 4m + 2 \leq 6m$
+		* $\#operations \leq 6nlogn + 6n$
 		
 + Guiding Principles for Analysis of Algorithms
 
