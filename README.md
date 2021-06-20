@@ -75,7 +75,7 @@
 	+ **Divide and Conquer**
 		+ let $X =\left[ \begin{matrix} A & B\\ C & D \end{matrix} \right]$, $Y = \left[ \begin{matrix} E & F \\ G & H \end{matrix} \right]$, then 
 
-		$X \cdot Y = \left[ \begin{matrix} A \cdot E + B \cdot G & A \cdot F + B \cdot H \\ C \cdot E + D \cdot G  & C \cdot F +D \cdot H \end{matrix} \right]$
+		$X \cdot Y = \left[ \begin{matrix} A \cdot E + B \cdot G & A \cdot F + B \cdot H \\\\ C \cdot E + D \cdot G  & C \cdot F +D \cdot H \end{matrix} \right]$
 		+ #Operations of subroutine: **8 multiplicaitons** + 4 additions
 		+ Running time: $O(n^3)$
 	
@@ -88,7 +88,7 @@
 		+ $P_6=(B-D) \cdot (G+H)$
 		+ $P_7=(A-C) \cdot (E+F)$
 
-		$X \cdot Y = \left[ \begin{matrix}  P_5 +P_4 - P_2 + P_6 & P_1 + P_2 \\ P_3+P4  & P_1+P_5-P_3-P_2 \end{matrix} \right]$
+		$X \cdot Y = \left[ \begin{matrix}  P_5 +P_4 - P_2 + P_6 & P_1 + P_2 \\\\ P_3+P4  & P_1+P_5-P_3-P_2 \end{matrix} \right]$
 		+ #Operations of subroutine: **7 multiplications** + 18 additions
 		+ Running time: $O(n^{2.81})$
 + **Closest Pairs**
@@ -118,14 +118,14 @@
 		$a =$ #recursive calls
 		$b=$ input size shrinking factor
 		$d=$ exponent in running time of 'COMBINE' step
-	+ $T(n)=\begin{cases} O(n^d \cdot \log{n}) & a=b^d \\ O(n^d) & a < b^d \\ O(n^{\log_b{a}}) & a > b^d \end{cases}$
+	+ $T(n)=\begin{cases} O(n^d \cdot \log{n}) & a=b^d \\\\ O(n^d) & a < b^d \\\\ O(n^{\log_b{a}}) & a > b^d \end{cases}$
 
 + **Proof**
 	+ Recursion Tree
 		+ input size n, $(\log_b{n} + 1)$ levels
 		+ $j^{th}$ level: $a^j$ subproblems, each of size $\frac{n}{b^j}$
 		+ work at level $j^{th} \leq a^j \cdot c \cdot (\frac{n}{b^j})^d=c \cdot n^d \cdot (\frac{a}{b^d})^j$
-		+ total work $\ \ \ \ \ \ \ \ \ \ \leq c \cdot n^d \cdot \sum_{j = 0}^{\log_b{n}} (\frac{a}{b^d})^j$
+		+ total work $\ \ \ \ \ \ \ \ \leq c \cdot n^d \cdot \sum_{j = 0}^{\log_b{n}} (\frac{a}{b^d})^j$
 	+ Understanding
 		+ $a=$ rate of  subproblem proliferation(**RSP**)
 		+ $b=$ rate of work shrinkage	(**RWS**)
