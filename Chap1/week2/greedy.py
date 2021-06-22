@@ -5,7 +5,6 @@ def greedy100(m):
     
     count = 0
 
-        
     point = [0,0]
     while True:
         count += 1
