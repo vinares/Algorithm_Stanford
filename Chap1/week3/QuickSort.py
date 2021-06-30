@@ -1,4 +1,7 @@
 import numpy as np
+
+count = 0
+
 class QuickSort():
     def __init__(self, nums):
         self.nums = nums
@@ -7,8 +10,17 @@ class QuickSort():
         n = right - left + 1
         if n < 2:
             return
+        global count
+        count += n - 1
         ans = [None for i in range(n)]
         start, end = 0, n - 1
+        mid = left + n//2
+        pivot = [self.nums[left], self.nums[right], self.nums[mid]]
+        pivot.sort()
+        if self.nums[right] == pivot[1]:
+            self.nums[right], self.nums[left] = self.nums[left], self.nums[right]
+        if self.nums[mid] == pivot[1]:
+            self.nums[left], self.nums[mid] = self.nums[mid], self.nums[left]
         for i in range(left + 1, right + 1):
             if self.nums[i] > self.nums[left]:
                 ans[end] = self.nums[i]
@@ -24,10 +36,23 @@ class QuickSort():
         return
 
     def In_place(self, left, right):
+        global count
         n = right - left + 1
+        if n:
+            count += n - 1
         if n < 2:
             return
         i,j = left + 1, left + 1
+        mid = (right + left) //2
+        pivot = [self.nums[left], self.nums[right], self.nums[mid]]
+        pivot.sort()
+        self.nums[right], self.nums[left] = self.nums[left], self.nums[right]
+        """
+        if self.nums[mid] == pivot[1] and pivot[0] < self.nums[mid] < pivot[2]:
+            self.nums[left], self.nums[mid] = self.nums[mid], self.nums[left]
+        elif self.nums[right] == pivot[1] and pivot[0] < self.nums[right] < pivot[2]:
+            self.nums[right], self.nums[left] = self.nums[left], self.nums[right]
+        """
         while j != right + 1:
             while j != right and i == j and self.nums[i] < self.nums[left]:
                 i += 1
@@ -40,9 +65,10 @@ class QuickSort():
                 j += 1
             else:
                 j += 1
+
         pivot = i - 1
-        if self.nums[pivot] < self.nums[left]:
-            self.nums[left], self.nums[pivot] = self.nums[pivot], self.nums[left]
+        #if self.nums[pivot] < self.nums[left]:
+        self.nums[left], self.nums[pivot] = self.nums[pivot], self.nums[left]
         self.In_place(left, pivot - 1)
         self.In_place(pivot + 1, right)
         return
@@ -73,29 +99,36 @@ class QuickSort():
         return
 
 #np.random.seed(10)
-start, end = 1, 1000000
+start, end = 1, 10000
 nums = [i for i in range(start, end + 1)]
+nums = np.loadtxt('QuickSort.txt')
+#nums = np.loadtxt('1.txt',dtype=int)
+nums = list(nums)
 #np.random.shuffle(nums)
 
 import time
+
 a = nums.copy()
 QS = QuickSort(a)
 tic = time.time()
 #QS.easyWay(0, end - start)
 toc = time.time()
-print(toc - tic)
+#print(toc - tic)
 
 b = nums.copy()
 QS = QuickSort(b)
 tic = time.time()
-#QS.In_place(0,end - start)
+QS.In_place(0,end - start)
 toc =time.time()
+print(count)
 print(toc - tic)
 
 c = nums.copy()
 QS = QuickSort(c)
 tic = time.time()
-QS.randomPivot(0,end - start)
+#QS.randomPivot(0,end - start)
 toc =time.time()
 print(toc - tic)
 #print(c)
+
+nums
