@@ -1,4 +1,5 @@
 
+  
 # Algorithm_Stanford
 
 + Algorithm specialization
@@ -132,3 +133,50 @@
 		1. RSP = RWS$\rightarrow$ same amount of work at each level$\rightarrow O(n^d \cdot \log{n})$
 		2. RSP <RWS$\rightarrow$ less work as goes deeper $\rightarrow$ most work at the root $\rightarrow O(n^d)$ 
 		3. RSP>RWS$\rightarrow$ more work as goes deeper$\rightarrow$most work at the leaves$\rightarrow O(n^{\log_b{a}})$
+
+### week3
+
+#### Quicksort Algorithm
+
++  **2 Ways to Go**
+	+	Extra memory: allocate $O(n)$ memory, use 1st element as pivot, smaller on left, larger on right, finally pivot.
+	+ double pointers: exchange pivot with 1st element, swap on the original arrays.
+
++ **Choose a Good Pivot**
+	+ $T(n)=\begin{cases} O(n^2) & smallest \ or \ largest \ elment \ as \ pivot \\\\ O(n\cdot logn) & median \ as \ pivot \ every \ time \end{cases}$
+	+ **Random Pivot**
+		+ $25\% - 75\%$ split is good enough for $O(n \cdot logn)$
+#### Quicksort Analysis
++ A Decomposition Principle
+	+ Master therom can't apply due to random size of subroutine
+	+ Lemma: running time of Quicksort is dominated by number of comparisons
+	+ $E[Comparisons] = \sum_{i = 1}^{n-1} \sum_{j=i+1}^{n} Pr(z_i, z_j \ get \ compared)$
++ The Key Insight
+	+ $\forall i < j$, if pivot is $z_i$ or $z_j$, they get compared, otherwise, they don't.
+	+ $Pr(z_i, z_j \ get \ compared) = \frac{2}{j-i+1}$
++ Running time
+	+ $E[C] =\sum_{i = 1}^{n-1} \sum_{j=i+1}^{n} \frac{2}{j-i+1} \leq  \sum_{i = 1}^{n-1}  \sum_{k=2}^{n} \frac{1}{k} = 2 \cdot n \cdot \sum_{k=2}^{n} \frac{1}{k}$
+	+ $\sum_{k=2}^{n} \frac{1}{k} \leq \int_2^n {\frac{1}{x}} \,{\rm d}x$
+	+ $E[C] \leq 2 \cdot n \cdot \ln{n}$
+
+### week3
+
+#### Linear-Time Selection Algorithm
++ **Randomised Selection** 
+	+ looking for *i*th smallest number in array
+	+ $T(n) \leq T(\frac{n}{2}) + O(n)$
+	+ $T(n) = O(n)$
++ **Deterministic Selection**
+	+ 'median of medians'
+	+ seprate array into n/5 groups, 5 element in each group, mergesort every group
+	+ form a new array with medians of each group, and recurse the DS function to find its median. Use the median as partition pivot
+	+ $T(n) = O(n)$
++ $O(n \cdot log n)$ is the lower bound of comparison-based sorting
+
+#### Graphs and the Contraction Algorithm
++ **Minimum Cuts**
+	+ for a connected undirected graph, allowed for parallel edges, find the cut with least crossing edges.
+	+ Applications:
+		+ **identify network weakness/bottleneck**: find the most efficient way to paralyse the enermy's transportation network
+		+ **community detection in social networks**
+		+ **image segmentation**
