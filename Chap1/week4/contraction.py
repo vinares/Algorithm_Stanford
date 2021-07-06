@@ -33,11 +33,12 @@ def minCut(graph):
     global count
 
     n = len(graph.keys())
+
     N = int(n ** 2 * math.log(n))
     crossing_edges = n * (n - 1) // 2
     minimum_cuts = set()
 
-    for _ in range(n * n):
+    for _ in range(N):
         copygraph = copy.deepcopy(graph)
         count += 1
         if count % 1000 == 0:
@@ -67,8 +68,8 @@ for line in file:
     for i in range(1,len(cur)):
         graph[cur[0]][cur[i]] = 1
 
-
+print(count)
 tic = time.time()
 print(minCut(graph))
 toc = time.time() - tic
-print('O(n^2 logn) trials took: '+str(toc) +' seconds.')
+print('O(n^2 * logn) trials took: '+str(toc) +' seconds.')
